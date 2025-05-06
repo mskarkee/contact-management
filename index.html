@@ -1006,12 +1006,18 @@
         globalSearch.addEventListener('input', (e) => {
             currentSearchTerm = e.target.value.toLowerCase();
             
-            // For all tabs
-            if(currentTab === 'floors') renderFloors();
-            else if(currentTab === 'subOffices') renderSubOffices();
-            else if(currentTab === 'otherOffices') renderOtherOffices();
-            else if(currentTab === 'allContacts') renderAllContacts();
-            else if(currentTab === 'details') renderSectionContacts();
+            // Trigger re-render based on current tab
+            if (currentTab === 'floors') {
+                renderFloors();
+            } else if (currentTab === 'subOffices') {
+                renderSubOffices();
+            } else if (currentTab === 'otherOffices') {
+                renderOtherOffices();
+            } else if (currentTab === 'allContacts') {
+                renderAllContacts();
+            } else if (currentTab === 'details') {
+                renderSectionContacts();
+            }
         });
 
         // Section search
@@ -1111,13 +1117,15 @@
             }
         }
 // search enhanced
-                function renderFloors() {
+         function renderFloors() {
             floorsContainer.innerHTML = '';
             
             data.structure.floors.forEach(floor => {
+                // Create floor card
                 const floorCard = document.createElement('div');
                 floorCard.className = 'bg-white rounded-lg shadow-md overflow-hidden card-hover';
                 
+                // Initialize sections list HTML
                 floorCard.innerHTML = `
                     <div class="${floor.color} text-white px-4 py-3">
                         <h3 class="font-bold text-lg">${floor.name}</h3>
@@ -1134,85 +1142,152 @@
                     </div>
                 `;
                 
+                // Append floor card to container
                 floorsContainer.appendChild(floorCard);
                 
+                // Get the sections list element
                 const sectionsList = document.getElementById(`sections-${floor.id}`);
+                sectionsList.innerHTML = ''; // Clear existing sections
                 
+                // Filter sections that match the search term
+                let hasMatchingSections = false;
                 floor.sections.forEach(section => {
-                    const sectionItem = document.createElement('li');
-                    sectionItem.innerHTML = `
-                        <button class="section-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-blue-50 rounded flex justify-between items-center" data-section="${section.id}">
-                            <span>${section.name}</span>
-                            <i class="fas fa-chevron-right text-sm text-gray-500"></i>
-                        </button>
-                    `;
+                    const matchesSearch = currentSearchTerm === '' || 
+                        section.name.toLowerCase().includes(currentSearchTerm) ||
+                        floor.name.toLowerCase().includes(currentSearchTerm) ||
+                        section.contacts.some(contact => 
+                            contact.name.toLowerCase().includes(currentSearchTerm) ||
+                            contact.designation.toLowerCase().includes(currentSearchTerm)
+                        );
                     
-                    sectionsList.appendChild(sectionItem);
-                    
-                    // Add event listener to section button
-                    sectionItem.querySelector('.section-btn').addEventListener('click', () => {
-                        showSectionDetails(section.id);
-                    });
+                    if (matchesSearch) {
+                        hasMatchingSections = true;
+                        const sectionItem = document.createElement('li');
+                        sectionItem.innerHTML = `
+                            <button class="section-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-blue-50 rounded flex justify-between items-center" data-section="${section.id}">
+                                <span>${section.name}</span>
+                                <i class="fas fa-chevron-right text-sm text-gray-500"></i>
+                            </button>
+                        `;
+                        
+                        sectionsList.appendChild(sectionItem);
+                        
+                        // Add event listener to section button
+                        sectionItem.querySelector('.section-btn').addEventListener('click', () => {
+                            showSectionDetails(section.id);
+                        });
+                    }
                 });
+                
+                // Only keep the floor card if it has matching sections
+                if (!hasMatchingSections) {
+                    floorCard.remove();
+                }
             });
+        
+            // Show "No results" message if no floors are displayed
+            if (floorsContainer.innerHTML === '') {
+                floorsContainer.innerHTML = `
+                    <div class="text-center text-gray-500 py-4">
+                        No matching floors or sections found.
+                    </div>
+                `;
+            }
         }
-
-        function renderSubOffices() {
+// render subofficesfunction renderSubOffices() {
             subOfficesContainer.innerHTML = '';
             
             data.structure.subOffices.forEach(office => {
-                const officeCard = document.createElement('div');
-                officeCard.className = 'bg-white rounded-lg shadow-md overflow-hidden card-hover';
+                const matchesSearch = currentSearchTerm === '' || 
+                    office.name.toLowerCase().includes(currentSearchTerm) ||
+                    office.contacts.some(contact => 
+                        contact.name.toLowerCase().includes(currentSearchTerm) ||
+                        contact.designation.toLowerCase().includes(currentSearchTerm)
+                    );
                 
-                officeCard.innerHTML = `
-                    <div class="${office.color} text-white px-4 py-3">
-                        <h3 class="font-bold text-lg">${office.name}</h3>
-                    </div>
-                    <div class="p-4">
-                        <button class="office-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-green-50 rounded flex justify-between items-center" data-office="${office.id}">
-                            <span>View Contacts</span>
-                            <i class="fas fa-chevron-right text-sm text-gray-500"></i>
-                        </button>
+                if (matchesSearch) {
+                    const officeCard = document.createElement('div');
+                    officeCard.className = 'bg-white rounded-lg shadow-md overflow-hidden card-hover';
+                    
+                    officeCard.innerHTML = `
+                        <div class="${office.color} text-white px-4 py-3">
+                            <h3 class="font-bold text-lg">${office.name}</h3>
+                        </div>
+                        <div class="p-4">
+                            <button class="office-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-green-50 rounded flex justify-between items-center" data-office="${office.id}">
+                                <span>View Contacts</span>
+                                <i class="fas fa-chevron-right text-sm text-gray-500"></i>
+                            </button>
+                        </div>
+                    `;
+                    
+                    subOfficesContainer.appendChild(officeCard);
+                    
+                    // Add event listener to office button
+                    officeCard.querySelector('.office-btn').addEventListener('click', () => {
+                        showSectionDetails(office.id);
+                    });
+                }
+            });
+        
+            // Show "No results" message if no offices are displayed
+            if (subOfficesContainer.innerHTML === '') {
+                subOfficesContainer.innerHTML = `
+                    <div class="text-center text-gray-500 py-4">
+                        No matching offices found.
                     </div>
                 `;
-                
-                subOfficesContainer.appendChild(officeCard);
-                
-                // Add event listener to office button
-                officeCard.querySelector('.office-btn').addEventListener('click', () => {
-                    showSectionDetails(office.id);
-                });
-            });
+            }
         }
 
-        function renderOtherOffices() {
-            otherOfficesContainer.innerHTML = '';
+//other offices
+        
+            function renderOtherOffices() {
+                otherOfficesContainer.innerHTML = '';
+                
+                data.structure.otherOffices.forEach(office => {
+                    const matchesSearch = currentSearchTerm === '' || 
+                        office.name.toLowerCase().includes(currentSearchTerm) ||
+                        office.contacts.some(contact => 
+                            contact.name.toLowerCase().includes(currentSearchTerm) ||
+                            contact.designation.toLowerCase().includes(currentSearchTerm)
+                        );
+                    
+                    if (matchesSearch) {
+                        const officeCard = document.createElement('div');
+                        officeCard.className = 'bg-white rounded-lg shadow-md overflow-hidden card-hover';
+                        
+                        officeCard.innerHTML = `
+                            <div class="${office.color} text-white px-4 py-3">
+                                <h3 class="font-bold text-lg">${office.name}</h3>
+                            </div>
+                            <div class="p-4">
+                                <button class="office-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-purple-50 rounded flex justify-between items-center" data-office="${office.id}">
+                                    <span>View Contacts</span>
+                                    <i class="fas fa-chevron-right text-sm text-gray-500"></i>
+                                </button>
+                            </div>
+                        `;
+                        
+                        otherOfficesContainer.appendChild(officeCard);
+                        
+                        // Add event listener to office button
+                        officeCard.querySelector('.office-btn').addEventListener('click', () => {
+                            showSectionDetails(office.id);
+                        });
+                    }
+                });
             
-            data.structure.otherOffices.forEach(office => {
-                const officeCard = document.createElement('div');
-                officeCard.className = 'bg-white rounded-lg shadow-md overflow-hidden card-hover';
-                
-                officeCard.innerHTML = `
-                    <div class="${office.color} text-white px-4 py-3">
-                        <h3 class="font-bold text-lg">${office.name}</h3>
-                    </div>
-                    <div class="p-4">
-                        <button class="office-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-purple-50 rounded flex justify-between items-center" data-office="${office.id}">
-                            <span>View Contacts</span>
-                            <i class="fas fa-chevron-right text-sm text-gray-500"></i>
-                        </button>
-                    </div>
-                `;
-                
-                otherOfficesContainer.appendChild(officeCard);
-                
-                // Add event listener to office button
-                officeCard.querySelector('.office-btn').addEventListener('click', () => {
-                    showSectionDetails(office.id);
-                });
-            });
-        }
-
+                // Show "No results" message if no offices are displayed
+                if (otherOfficesContainer.innerHTML === '') {
+                    otherOfficesContainer.innerHTML = `
+                        <div class="text-center text-gray-500 py-4">
+                            No matching offices found.
+                        </div>
+                    `;
+                }
+            }
+//selection detail
         function showSectionDetails(sectionId) {
             // Hide current tab content and show details content
             tabContents[currentTab].classList.add('hidden');
