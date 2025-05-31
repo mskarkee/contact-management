@@ -60,16 +60,24 @@
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
         <!-- Tabs Navigation -->
-        <div class="flex flex-wrap border-b border-gray-200 mb-8">
-            <button id="floorsTab" class="tab-button active px-6 py-3 font-medium text-blue-700 border-b-2 border-blue-700 bg-gray-100 outline outline-1 outline-blue-700">Floors & Sections</button>
-            <button id="subOfficesTab" class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-blue-700 bg-gray-100 outline outline-1 outline-blue-700">Subordinate Offices</button>
-            <button id="otherOfficesTab" class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-blue-700 bg-gray-100 outline outline-1 outline-blue-700">Other Offices</button>
-            <button id="allContactsTab" class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-blue-700 bg-gray-100 outline outline-1 outline-blue-700">All Contacts</button>
+        <div class="flex justify-center border-b border-gray-200 mb-8">
+            <button id="floorsTab" class="tab-button active px-6 py-3 font-medium text-blue-700 border-b-2 border-blue-700 bg-gray-100 outline outline-1 outline-blue-700">
+                <i class="fas fa-building mr-2"></i>Floors
+            </button>
+            <button id="subOfficesTab" class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-blue-700 bg-gray-100 outline outline-1 outline-blue-700">
+                <i class="fas fa-sitemap mr-2"></i>Subordinate Offices
+            </button>
+            <button id="otherOfficesTab" class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-blue-700 bg-gray-100 outline outline-1 outline-blue-700">
+                <i class="fas fa-network-wired mr-2"></i>Other Offices
+            </button>
+            <button id="allContactsTab" class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-blue-700 bg-gray-100 outline outline-1 outline-blue-700">
+                <i class="fas fa-users mr-2"></i>All Contacts
+            </button>
         </div>
 
         <!-- Tab Contents -->
         <div class="tab-content">
-            <!-- Floors & Sections Content -->
+            <!-- Floors Content -->
             <div id="floorsContent" class="tab-pane active fade-in">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="floorsContainer">
                     <!-- Floors will be loaded here dynamically -->
@@ -140,7 +148,7 @@
                 </div>
             </div>
 
-            <!-- Section/Office Details Content (hidden by default) -->
+            <!-- Section Details Content (hidden by default) -->
             <div id="detailsContent" class="hidden fade-in">
                 <div class="bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="flex items-center justify-between bg-blue-800 text-white px-4 py-3">
@@ -206,7 +214,7 @@
             <div class="fixed inset-0 transition-opacity" aria-hidden="true">
                 <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
             </div>
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true"></span>
             <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
                 <div class="bg-blue-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                     <button type="button" id="closeModal" class="mt-0 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-700 text-base font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
@@ -310,23 +318,23 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
-                <p>&copy; 2023 District Police Range Kathmandu. All rights reserved.</p>
+                <p>© 2023 District Police Range Kathmandu. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Data Storage (All contacts in one place for easy editing) -->
+    <!-- Data Storage -->
     <script id="contactsData" type="application/json">
         {
             "structure": {
                 "floors": [
                     {
-                        "id": "floor1",
-                        "name": "Floor 1",
+                        "id": "ground",
+                        "name": "Ground Floor",
                         "color": "bg-blue-800",
                         "sections": [
                             {
-                                "id": "floor1-admin",
+                                "id": "ground-admin",
                                 "name": "Administration Section",
                                 "contacts": [
                                     {
@@ -348,21 +356,11 @@
                                         "contact2": "01-4223345",
                                         "email": "bimala.thapa@kathmandupolice.gov.np",
                                         "details": "In charge of personnel management"
-                                    },
-                                    {
-                                        "designation": "Administrative Officer",
-                                        "name": "Chandra Bahadur Rai",
-                                        "category": "Administration",
-                                        "subCategory": "Officer",
-                                        "contact1": "9861345678",
-                                        "contact2": "01-4223346",
-                                        "email": "chandra.rai@kathmandupolice.gov.np",
-                                        "details": "Handles daily administrative tasks"
                                     }
                                 ]
                             },
                             {
-                                "id": "floor1-operations",
+                                "id": "ground-operations",
                                 "name": "Operations Section",
                                 "contacts": [
                                     {
@@ -374,29 +372,16 @@
                                         "contact2": "01-4223355",
                                         "email": "dipak.joshi@kathmandupolice.gov.np",
                                         "details": "24/7 emergency contact available"
-                                    },
-                                    {
-                                        "designation": "Field Operations Officer",
-                                        "name": "Esha Gurung",
-                                        "category": "Operations",
-                                        "subCategory": "Officer",
-                                        "contact1": "9852345678",
-                                        "contact2": "01-4223356",
-                                        "email": "esha.gurung@kathmandupolice.gov.np",
-                                        "details": "Coordinates patrol teams"
-                                    },
-                                    {
-                                        "designation": "Dispatch Officer",
-                                        "name": "Firoz Khan",
-                                        "category": "Operations",
-                                        "subCategory": "Officer",
-                                        "contact1": "9863456789",
-                                        "contact2": "01-4223357",
-                                        "email": "firoz.khan@kathmandupolice.gov.np",
-                                        "details": "Manages emergency response"
                                     }
                                 ]
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "id": "floor1",
+                        "name": "Floor 1",
+                        "color": "bg-blue-800",
+                        "sections": [
                             {
                                 "id": "floor1-crime",
                                 "name": "Crime Investigation",
@@ -410,26 +395,6 @@
                                         "contact2": "01-4223366",
                                         "email": "gopal.shrestha@kathmandupolice.gov.np",
                                         "details": "Specialized in homicide cases"
-                                    },
-                                    {
-                                        "designation": "Forensic Investigator",
-                                        "name": "Hema Rai",
-                                        "category": "Investigation",
-                                        "subCategory": "Specialist",
-                                        "contact1": "9853456789",
-                                        "contact2": "01-4223367",
-                                        "email": "hema.rai@kathmandupolice.gov.np",
-                                        "details": "Forensic evidence collection"
-                                    },
-                                    {
-                                        "designation": "Cyber Crime Investigator",
-                                        "name": "Ishan Poudel",
-                                        "category": "Investigation",
-                                        "subCategory": "Specialist",
-                                        "contact1": "9864567890",
-                                        "contact2": "01-4223368",
-                                        "email": "ishan.poudel@kathmandupolice.gov.np",
-                                        "details": "Digital forensics expert"
                                     }
                                 ]
                             }
@@ -453,98 +418,6 @@
                                         "contact2": "01-4223377",
                                         "email": "jeevan.adhikari@kathmandupolice.gov.np",
                                         "details": "Manages all traffic operations"
-                                    },
-                                    {
-                                        "designation": "Traffic Control Officer",
-                                        "name": "Kiran Basnet",
-                                        "category": "Traffic",
-                                        "subCategory": "Officer",
-                                        "contact1": "9854567890",
-                                        "contact2": "01-4223378",
-                                        "email": "kiran.basnet@kathmandupolice.gov.np",
-                                        "details": "Coordinates traffic signals"
-                                    },
-                                    {
-                                        "designation": "Accident Investigator",
-                                        "name": "Laxman Thapa",
-                                        "category": "Traffic",
-                                        "subCategory": "Officer",
-                                        "contact1": "9865678901",
-                                        "contact2": "01-4223379",
-                                        "email": "laxman.thapa@kathmandupolice.gov.np",
-                                        "details": "Road accident specialist"
-                                    }
-                                ]
-                            },
-                            {
-                                "id": "floor2-cyber",
-                                "name": "Cyber Crime",
-                                "contacts": [
-                                    {
-                                        "designation": "Cyber Crime Chief",
-                                        "name": "Manoj Neupane",
-                                        "category": "Cyber Crime",
-                                        "subCategory": "Senior Officer",
-                                        "contact1": "9844567890",
-                                        "contact2": "01-4223388",
-                                        "email": "manoj.neupane@kathmandupolice.gov.np",
-                                        "details": "Leads cyber crime division"
-                                    },
-                                    {
-                                        "designation": "Digital Forensic Expert",
-                                        "name": "Nisha Shrestha",
-                                        "category": "Cyber Crime",
-                                        "subCategory": "Specialist",
-                                        "contact1": "9855678901",
-                                        "contact2": "01-4223389",
-                                        "email": "nisha.shrestha@kathmandupolice.gov.np",
-                                        "details": "Data recovery specialist"
-                                    },
-                                    {
-                                        "designation": "Cyber Security Analyst",
-                                        "name": "Om Prakash",
-                                        "category": "Cyber Crime",
-                                        "subCategory": "Specialist",
-                                        "contact1": "9866789012",
-                                        "contact2": "01-4223390",
-                                        "email": "om.prakash@kathmandupolice.gov.np",
-                                        "details": "Network security expert"
-                                    }
-                                ]
-                            },
-                            {
-                                "id": "floor2-forensic",
-                                "name": "Forensic Department",
-                                "contacts": [
-                                    {
-                                        "designation": "Forensic Department Head",
-                                        "name": "Prakash Yadav",
-                                        "category": "Forensic",
-                                        "subCategory": "Senior Officer",
-                                        "contact1": "9845678901",
-                                        "contact2": "01-4223399",
-                                        "email": "prakash.yadav@kathmandupolice.gov.np",
-                                        "details": "Forensic science specialist"
-                                    },
-                                    {
-                                        "designation": "Crime Scene Investigator",
-                                        "name": "Rita Tamang",
-                                        "category": "Forensic",
-                                        "subCategory": "Officer",
-                                        "contact1": "9856789012",
-                                        "contact2": "01-4223400",
-                                        "email": "rita.tamang@kathmandupolice.gov.np",
-                                        "details": "Evidence collection expert"
-                                    },
-                                    {
-                                        "designation": "Lab Technician",
-                                        "name": "Suresh K.C.",
-                                        "category": "Forensic",
-                                        "subCategory": "Technician",
-                                        "contact1": "9867890123",
-                                        "contact2": "01-4223401",
-                                        "email": "suresh.kc@kathmandupolice.gov.np",
-                                        "details": "DNA analysis specialist"
                                     }
                                 ]
                             }
@@ -568,31 +441,18 @@
                                         "contact2": "01-4223411",
                                         "email": "tara.devi@kathmandupolice.gov.np",
                                         "details": "Manages all HR operations"
-                                    },
-                                    {
-                                        "designation": "Recruitment Officer",
-                                        "name": "Umesh Bhattarai",
-                                        "category": "Human Resources",
-                                        "subCategory": "Officer",
-                                        "contact1": "9857890123",
-                                        "contact2": "01-4223412",
-                                        "email": "umesh.bhattarai@kathmandupolice.gov.np",
-                                        "details": "Handles police recruitment"
-                                    },
-                                    {
-                                        "designation": "Training Coordinator",
-                                        "name": "Vijaya Shrestha",
-                                        "category": "Human Resources",
-                                        "subCategory": "Officer",
-                                        "contact1": "9868901234",
-                                        "contact2": "01-4223413",
-                                        "email": "vijaya.shrestha@kathmandupolice.gov.np",
-                                        "details": "Coordinates training programs"
                                     }
                                 ]
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "id": "floor4",
+                        "name": "Floor 4",
+                        "color": "bg-blue-800",
+                        "sections": [
                             {
-                                "id": "floor3-training",
+                                "id": "floor4-training",
                                 "name": "Training Section",
                                 "contacts": [
                                     {
@@ -604,31 +464,18 @@
                                         "contact2": "01-4223422",
                                         "email": "yogesh.karki@kathmandupolice.gov.np",
                                         "details": "Oversees all training programs"
-                                    },
-                                    {
-                                        "designation": "Physical Training Instructor",
-                                        "name": "Zahir Alam",
-                                        "category": "Training",
-                                        "subCategory": "Instructor",
-                                        "contact1": "9858901234",
-                                        "contact2": "01-4223423",
-                                        "email": "zahir.alam@kathmandupolice.gov.np",
-                                        "details": "Self-defense and fitness training"
-                                    },
-                                    {
-                                        "designation": "Classroom Instructor",
-                                        "name": "Anita Thapa",
-                                        "category": "Training",
-                                        "subCategory": "Instructor",
-                                        "contact1": "9869012345",
-                                        "contact2": "01-4223424",
-                                        "email": "anita.thapa@kathmandupolice.gov.np",
-                                        "details": "Law and procedure training"
                                     }
                                 ]
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "id": "floor5",
+                        "name": "Floor 5",
+                        "color": "bg-blue-800",
+                        "sections": [
                             {
-                                "id": "floor3-welfare",
+                                "id": "floor5-welfare",
                                 "name": "Welfare Section",
                                 "contacts": [
                                     {
@@ -640,26 +487,75 @@
                                         "contact2": "01-4223433",
                                         "email": "bikram.rana@kathmandupolice.gov.np",
                                         "details": "Officer welfare programs"
-                                    },
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "floor6",
+                        "name": "Floor 6",
+                        "color": "bg-blue-800",
+                        "sections": [
+                            {
+                                "id": "floor6-forensic",
+                                "name": "Forensic Department",
+                                "contacts": [
                                     {
-                                        "designation": "Counselor",
-                                        "name": "Chhaya Gurung",
-                                        "category": "Welfare",
-                                        "subCategory": "Officer",
-                                        "contact1": "9859012345",
-                                        "contact2": "01-4223434",
-                                        "email": "chhaya.gurung@kathmandupolice.gov.np",
-                                        "details": "Psychological counseling"
-                                    },
+                                        "designation": "Forensic Department Head",
+                                        "name": "Prakash Yadav",
+                                        "category": "Forensic",
+                                        "subCategory": "Senior Officer",
+                                        "contact1": "9845678901",
+                                        "contact2": "01-4223399",
+                                        "email": "prakash.yadav@kathmandupolice.gov.np",
+                                        "details": "Forensic science specialist"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "floor7",
+                        "name": "Floor 7",
+                        "color": "bg-blue-800",
+                        "sections": [
+                            {
+                                "id": "floor7-cyber",
+                                "name": "Cyber Crime",
+                                "contacts": [
                                     {
-                                        "designation": "Medical Officer",
-                                        "name": "Deepak Shrestha",
-                                        "category": "Welfare",
-                                        "subCategory": "Officer",
-                                        "contact1": "9860123456",
-                                        "contact2": "01-4223435",
-                                        "email": "deepak.shrestha@kathmandupolice.gov.np",
-                                        "details": "Health and medical services"
+                                        "designation": "Cyber Crime Chief",
+                                        "name": "Manoj Neupane",
+                                        "category": "Cyber Crime",
+                                        "subCategory": "Senior Officer",
+                                        "contact1": "9844567890",
+                                        "contact2": "01-4223388",
+                                        "email": "manoj.neupane@kathmandupolice.gov.np",
+                                        "details": "Leads cyber crime division"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "floor8",
+                        "name": "Floor 8",
+                        "color": "bg-blue-800",
+                        "sections": [
+                            {
+                                "id": "floor8-intelligence",
+                                "name": "Intelligence Section",
+                                "contacts": [
+                                    {
+                                        "designation": "Intelligence Chief",
+                                        "name": "Suresh Lama",
+                                        "category": "Intelligence",
+                                        "subCategory": "Senior Officer",
+                                        "contact1": "9845678902",
+                                        "contact2": "01-4223502",
+                                        "email": "suresh.lama@kathmandupolice.gov.np",
+                                        "details": "Manages intelligence operations"
                                     }
                                 ]
                             }
@@ -668,226 +564,181 @@
                 ],
                 "subOffices": [
                     {
-                        "id": "area1",
-                        "name": "Area Police Office - Kathmandu Central",
+                        "id": "circle1",
+                        "name": "Kathmandu Central Circle",
                         "color": "bg-green-700",
-                        "contacts": [
+                        "sections": [
                             {
-                                "designation": "Area Police Chief",
-                                "name": "Rajesh Hamal",
-                                "category": "Area Office",
-                                "subCategory": "Senior Officer",
-                                "contact1": "9849012345",
-                                "contact2": "01-4223444",
-                                "email": "rajesh.hamal@kathmandupolice.gov.np",
-                                "details": "Kathmandu Central Area"
+                                "id": "circle1-admin",
+                                "name": "Administration Section",
+                                "contacts": [
+                                    {
+                                        "designation": "Circle Chief",
+                                        "name": "Rajesh Hamal",
+                                        "category": "Administration",
+                                        "subCategory": "Senior Officer",
+                                        "contact1": "9849012345",
+                                        "contact2": "01-4223444",
+                                        "email": "rajesh.hamal@kathmandupolice.gov.np",
+                                        "details": "Kathmandu Central Circle Administration"
+                                    }
+                                ]
                             },
                             {
-                                "designation": "Deputy Area Chief",
-                                "name": "Sita Poudel",
-                                "category": "Area Office",
-                                "subCategory": "Officer",
-                                "contact1": "9850123456",
-                                "contact2": "01-4223445",
-                                "email": "sita.poudel@kathmandupolice.gov.np",
-                                "details": "Night shift supervisor"
-                            },
-                            {
-                                "designation": "Patrol Officer",
-                                "name": "Hari Bahadur",
-                                "category": "Area Office",
-                                "subCategory": "Officer",
-                                "contact1": "9861234567",
-                                "contact2": "01-4223446",
-                                "email": "hari.bahadur@kathmandupolice.gov.np",
-                                "details": "Field operations"
+                                "id": "circle1-operations",
+                                "name": "Operations Section",
+                                "contacts": [
+                                    {
+                                        "designation": "Operations Head",
+                                        "name": "Anil Gurung",
+                                        "category": "Operations",
+                                        "subCategory": "Officer",
+                                        "contact1": "9840123456",
+                                        "contact2": "01-4223445",
+                                        "email": "anil.gurung@kathmandupolice.gov.np",
+                                        "details": "Manages circle operations"
+                                    }
+                                ]
                             }
                         ]
                     },
                     {
-                        "id": "area2",
-                        "name": "Area Police Office - Kathmandu East",
+                        "id": "circle2",
+                        "name": "Kathmandu East Circle",
                         "color": "bg-green-700",
-                        "contacts": [
+                        "sections": [
                             {
-                                "designation": "Area Police Chief",
-                                "name": "Gopal Pandey",
-                                "category": "Area Office",
-                                "subCategory": "Senior Officer",
-                                "contact1": "9840123456",
-                                "contact2": "01-4223455",
-                                "email": "gopal.pandey@kathmandupolice.gov.np",
-                                "details": "Kathmandu East Area"
-                            },
-                            {
-                                "designation": "Community Liaison",
-                                "name": "Indira K.C.",
-                                "category": "Area Office",
-                                "subCategory": "Officer",
-                                "contact1": "9851234567",
-                                "contact2": "01-4223456",
-                                "email": "indira.kc@kathmandupolice.gov.np",
-                                "details": "Community relations"
-                            },
-                            {
-                                "designation": "Traffic Coordinator",
-                                "name": "Jitendra Thapa",
-                                "category": "Area Office",
-                                "subCategory": "Officer",
-                                "contact1": "9862345678",
-                                "contact2": "01-4223457",
-                                "email": "jitendra.thapa@kathmandupolice.gov.np",
-                                "details": "Local traffic management"
+                                "id": "circle2-patrol",
+                                "name": "Patrol Section",
+                                "contacts": [
+                                    {
+                                        "designation": "Patrol Chief",
+                                        "name": "Gopal Pandey",
+                                        "category": "Patrol",
+                                        "subCategory": "Senior Officer",
+                                        "contact1": "9841234567",
+                                        "contact2": "01-4223455",
+                                        "email": "gopal.pandey@kathmandupolice.gov.np",
+                                        "details": "Kathmandu East Circle Patrol"
+                                    }
+                                ]
                             }
                         ]
                     },
                     {
-                        "id": "post1",
-                        "name": "Police Post - New Road",
+                        "id": "prabhag1",
+                        "name": "New Road Prabhag",
                         "color": "bg-green-700",
-                        "contacts": [
+                        "sections": [
                             {
-                                "designation": "Post In-Charge",
-                                "name": "Krishna Shrestha",
-                                "category": "Police Post",
-                                "subCategory": "Officer",
-                                "contact1": "9841234567",
-                                "contact2": "01-4223466",
-                                "email": "krishna.shrestha@kathmandupolice.gov.np",
-                                "details": "New Road Police Post"
-                            },
+                                "id": "prabhag1-crime",
+                                "name": "Crime Prevention",
+                                "contacts": [
+                                    {
+                                        "designation": "Prabhag In-Charge",
+                                        "name": "Krishna Shrestha",
+                                        "category": "Crime Prevention",
+                                        "subCategory": "Officer",
+                                        "contact1": "9842345678",
+                                        "contact2": "01-4223466",
+                                        "email": "krishna.shrestha@kathmandupolice.gov.np",
+                                        "details": "New Road Prabhag Crime Prevention"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "ilaka1",
+                        "name": "Thamel Ilaka",
+                        "color": "bg-green-700",
+                        "sections": [
                             {
-                                "designation": "Assistant Officer",
-                                "name": "Laxmi Gurung",
-                                "category": "Police Post",
-                                "subCategory": "Officer",
-                                "contact1": "9852345678",
-                                "contact2": "01-4223467",
-                                "email": "laxmi.gurung@kathmandupolice.gov.np",
-                                "details": "Day shift"
-                            },
-                            {
-                                "designation": "Patrol Officer",
-                                "name": "Mohan Rai",
-                                "category": "Police Post",
-                                "subCategory": "Officer",
-                                "contact1": "9863456789",
-                                "contact2": "01-4223468",
-                                "email": "mohan.rai@kathmandupolice.gov.np",
-                                "details": "Night patrol"
+                                "id": "ilaka1-tourist",
+                                "name": "Tourist Police",
+                                "contacts": [
+                                    {
+                                        "designation": "Ilaka In-Charge",
+                                        "name": "Sita Poudel",
+                                        "category": "Tourist Police",
+                                        "subCategory": "Officer",
+                                        "contact1": "9850123456",
+                                        "contact2": "01-4223445",
+                                        "email": "sita.poudel@kathmandupolice.gov.np",
+                                        "details": "Thamel Ilaka Tourist Police"
+                                    }
+                                ]
                             }
                         ]
                     }
                 ],
                 "otherOffices": [
                     {
-                        "id": "special1",
-                        "name": "SWAT Team",
+                        "id": "cyber1",
+                        "name": "Cyber Bureau",
                         "color": "bg-purple-700",
-                        "contacts": [
+                        "sections": [
                             {
-                                "designation": "SWAT Team Leader",
-                                "name": "Niraj Basnet",
-                                "category": "Special Unit",
-                                "subCategory": "Senior Officer",
-                                "contact1": "9842345678",
-                                "contact2": "01-4223477",
-                                "email": "niraj.basnet@kathmandupolice.gov.np",
-                                "details": "24/7 emergency response"
-                            },
-                            {
-                                "designation": "Tactical Officer",
-                                "name": "Ojaswi Thapa",
-                                "category": "Special Unit",
-                                "subCategory": "Officer",
-                                "contact1": "9853456789",
-                                "contact2": "01-4223478",
-                                "email": "ojaswi.thapa@kathmandupolice.gov.np",
-                                "details": "Weapons specialist"
-                            },
-                            {
-                                "designation": "Negotiator",
-                                "name": "Prabin Shrestha",
-                                "category": "Special Unit",
-                                "subCategory": "Officer",
-                                "contact1": "9864567890",
-                                "contact2": "01-4223479",
-                                "email": "prabin.shrestha@kathmandupolice.gov.np",
-                                "details": "Hostage situations"
+                                "id": "cyber1-investigation",
+                                "name": "Cyber Investigation",
+                                "contacts": [
+                                    {
+                                        "designation": "Cyber Bureau Chief",
+                                        "name": "Niraj Basnet",
+                                        "category": "Cyber Investigation",
+                                        "subCategory": "Senior Officer",
+                                        "contact1": "9842345678",
+                                        "contact2": "01-4223477",
+                                        "email": "niraj.basnet@kathmandupolice.gov.np",
+                                        "details": "Cyber crime investigations"
+                                    }
+                                ]
                             }
                         ]
                     },
                     {
-                        "id": "support1",
-                        "name": "Police Hospital",
+                        "id": "fire1",
+                        "name": "Fire Office",
                         "color": "bg-purple-700",
-                        "contacts": [
+                        "sections": [
                             {
-                                "designation": "Chief Medical Officer",
-                                "name": "Ramesh K.C.",
-                                "category": "Support Service",
-                                "subCategory": "Senior Officer",
-                                "contact1": "9843456789",
-                                "contact2": "01-4223488",
-                                "email": "ramesh.kc@kathmandupolice.gov.np",
-                                "details": "Police Hospital"
-                            },
-                            {
-                                "designation": "Emergency Doctor",
-                                "name": "Sabina Rai",
-                                "category": "Support Service",
-                                "subCategory": "Officer",
-                                "contact1": "9854567890",
-                                "contact2": "01-4223489",
-                                "email": "sabina.rai@kathmandupolice.gov.np",
-                                "details": "24/7 emergency service"
-                            },
-                            {
-                                "designation": "Nurse In-Charge",
-                                "name": "Tika Gurung",
-                                "category": "Support Service",
-                                "subCategory": "Officer",
-                                "contact1": "9865678901",
-                                "contact2": "01-4223490",
-                                "email": "tika.gurung@kathmandupolice.gov.np",
-                                "details": "Patient care coordinator"
+                                "id": "fire1-response",
+                                "name": "Fire Response",
+                                "contacts": [
+                                    {
+                                        "designation": "Fire Office Chief",
+                                        "name": "Ramesh K.C.",
+                                        "category": "Fire Response",
+                                        "subCategory": "Senior Officer",
+                                        "contact1": "9843456789",
+                                        "contact2": "01-4223488",
+                                        "email": "ramesh.kc@kathmandupolice.gov.np",
+                                        "details": "Fire safety and response"
+                                    }
+                                ]
                             }
                         ]
                     },
                     {
-                        "id": "community1",
-                        "name": "Community Police Service Center",
+                        "id": "water1",
+                        "name": "Water Supply Office",
                         "color": "bg-purple-700",
-                        "contacts": [
+                        "sections": [
                             {
-                                "designation": "Community Service Chief",
-                                "name": "Ujjwal Adhikari",
-                                "category": "Community Service",
-                                "subCategory": "Senior Officer",
-                                "contact1": "9844567890",
-                                "contact2": "01-4223499",
-                                "email": "ujjwal.adhikari@kathmandupolice.gov.np",
-                                "details": "Community outreach programs"
-                            },
-                            {
-                                "designation": "Women's Safety Officer",
-                                "name": "Vidya Bhandari",
-                                "category": "Community Service",
-                                "subCategory": "Officer",
-                                "contact1": "9855678901",
-                                "contact2": "01-4223500",
-                                "email": "vidya.bhandari@kathmandupolice.gov.np",
-                                "details": "Women's safety initiatives"
-                            },
-                            {
-                                "designation": "Youth Coordinator",
-                                "name": "Wasim Khan",
-                                "category": "Community Service",
-                                "subCategory": "Officer",
-                                "contact1": "9866789012",
-                                "contact2": "01-4223501",
-                                "email": "wasim.khan@kathmandupolice.gov.np",
-                                "details": "School programs"
+                                "id": "water1-management",
+                                "name": "Water Management",
+                                "contacts": [
+                                    {
+                                        "designation": "Water Supply Coordinator",
+                                        "name": "Ujjwal Adhikari",
+                                        "category": "Water Management",
+                                        "subCategory": "Senior Officer",
+                                        "contact1": "9844567890",
+                                        "contact2": "01-4223499",
+                                        "email": "ujjwal.adhikari@kathmandupolice.gov.np",
+                                        "details": "Water supply management"
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -916,12 +767,16 @@
             
             // Subordinate offices
             structure.subOffices.forEach(office => {
-                contacts.push(...office.contacts);
+                office.sections.forEach(section => {
+                    contacts.push(...section.contacts);
+                });
             });
             
             // Other offices
             structure.otherOffices.forEach(office => {
-                contacts.push(...office.contacts);
+                office.sections.forEach(section => {
+                    contacts.push(...section.contacts);
+                });
             });
             
             return contacts;
@@ -989,24 +844,18 @@
         const emailContact = document.getElementById('emailContact');
 
         // Event Listeners
-        // Tab switching
         tabButtons.floors.addEventListener('click', () => switchTab('floors'));
         tabButtons.subOffices.addEventListener('click', () => switchTab('subOffices'));
         tabButtons.otherOffices.addEventListener('click', () => switchTab('otherOffices'));
         tabButtons.allContacts.addEventListener('click', () => switchTab('allContacts'));
 
-        // Back button
         backButton.addEventListener('click', () => {
             tabContents.details.classList.add('hidden');
             tabContents[currentTab].classList.remove('hidden');
         });
 
-        // Global search
-        // Replace the existing global search event listener with:
         globalSearch.addEventListener('input', (e) => {
             currentSearchTerm = e.target.value.toLowerCase();
-            
-            // For all tabs
             if(currentTab === 'floors') renderFloors();
             else if(currentTab === 'subOffices') renderSubOffices();
             else if(currentTab === 'otherOffices') renderOtherOffices();
@@ -1014,27 +863,23 @@
             else if(currentTab === 'details') renderSectionContacts();
         });
 
-        // Section search
         sectionSearch.addEventListener('input', (e) => {
             currentSearchTerm = e.target.value.toLowerCase();
             renderSectionContacts();
         });
 
-        // Contact filter
         contactFilter.addEventListener('change', (e) => {
             currentFilter = e.target.value;
             currentPage = 1;
             renderAllContacts();
         });
 
-        // Contact sort
         contactSort.addEventListener('change', (e) => {
             const [field, direction] = e.target.value.split('-');
             currentSort = { field, direction };
             renderAllContacts();
         });
 
-        // Pagination
         prevPage.addEventListener('click', () => {
             if (currentPage > 1) {
                 currentPage--;
@@ -1050,11 +895,9 @@
             }
         });
 
-        // Sort headers in section details
         document.querySelectorAll('.sort-header').forEach(header => {
             header.addEventListener('click', () => {
                 const field = header.dataset.sort;
-                // Toggle direction if clicking the same field
                 if (currentSort.field === field) {
                     currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
                 } else {
@@ -1062,7 +905,6 @@
                     currentSort.direction = 'asc';
                 }
                 
-                // Update sort indicators
                 document.querySelectorAll('.sort-header').forEach(h => {
                     h.classList.remove('sort-asc', 'sort-desc');
                 });
@@ -1073,22 +915,18 @@
             });
         });
 
-        // Modal events
         closeModal.addEventListener('click', () => {
             contactModal.classList.add('hidden');
         });
 
         // Functions
         function switchTab(tab) {
-            // Hide all tab contents
             Object.values(tabContents).forEach(content => {
                 content.classList.add('hidden');
             });
             
-            // Show selected tab content
             tabContents[tab].classList.remove('hidden');
             
-            // Update tab button styles
             Object.values(tabButtons).forEach(button => {
                 button.classList.remove('active', 'text-blue-700', 'border-blue-700');
                 button.classList.add('text-gray-600', 'hover:text-blue-700');
@@ -1097,21 +935,17 @@
             tabButtons[tab].classList.add('active', 'text-blue-700', 'border-blue-700');
             tabButtons[tab].classList.remove('text-gray-600', 'hover:text-blue-700');
             
-            // Update current tab
             currentTab = tab;
-            
-            // Reset search term when switching tabs
             currentSearchTerm = '';
             globalSearch.value = '';
             
-            // Special handling for all contacts tab
             if (tab === 'allContacts') {
                 currentPage = 1;
                 renderAllContacts();
             }
         }
-// search enhanced
-                function renderFloors() {
+
+        function renderFloors() {
             floorsContainer.innerHTML = '';
             
             data.structure.floors.forEach(floor => {
@@ -1149,7 +983,6 @@
                     
                     sectionsList.appendChild(sectionItem);
                     
-                    // Add event listener to section button
                     sectionItem.querySelector('.section-btn').addEventListener('click', () => {
                         showSectionDetails(section.id);
                     });
@@ -1169,18 +1002,35 @@
                         <h3 class="font-bold text-lg">${office.name}</h3>
                     </div>
                     <div class="p-4">
-                        <button class="office-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-green-50 rounded flex justify-between items-center" data-office="${office.id}">
-                            <span>View Contacts</span>
-                            <i class="fas fa-chevron-right text-sm text-gray-500"></i>
-                        </button>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-building mr-2 text-green-600"></i> Sections
+                            </h4>
+                            <ul class="space-y-2" id="sections-${office.id}">
+                                <!-- Sections will be added here -->
+                            </ul>
+                        </div>
                     </div>
                 `;
                 
                 subOfficesContainer.appendChild(officeCard);
                 
-                // Add event listener to office button
-                officeCard.querySelector('.office-btn').addEventListener('click', () => {
-                    showSectionDetails(office.id);
+                const sectionsList = document.getElementById(`sections-${office.id}`);
+                
+                office.sections.forEach(section => {
+                    const sectionItem = document.createElement('li');
+                    sectionItem.innerHTML = `
+                        <button class="section-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-green-50 rounded flex justify-between items-center" data-section="${section.id}">
+                            <span>${section.name}</span>
+                            <i class="fas fa-chevron-right text-sm text-gray-500"></i>
+                        </button>
+                    `;
+                    
+                    sectionsList.appendChild(sectionItem);
+                    
+                    sectionItem.querySelector('.section-btn').addEventListener('click', () => {
+                        showSectionDetails(section.id);
+                    });
                 });
             });
         }
@@ -1197,32 +1047,46 @@
                         <h3 class="font-bold text-lg">${office.name}</h3>
                     </div>
                     <div class="p-4">
-                        <button class="office-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-purple-50 rounded flex justify-between items-center" data-office="${office.id}">
-                            <span>View Contacts</span>
-                            <i class="fas fa-chevron-right text-sm text-gray-500"></i>
-                        </button>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-building mr-2 text-purple-600"></i> Sections
+                            </h4>
+                            <ul class="space-y-2" id="sections-${office.id}">
+                                <!-- Sections will be added here -->
+                            </ul>
+                        </div>
                     </div>
                 `;
                 
                 otherOfficesContainer.appendChild(officeCard);
                 
-                // Add event listener to office button
-                officeCard.querySelector('.office-btn').addEventListener('click', () => {
-                    showSectionDetails(office.id);
+                const sectionsList = document.getElementById(`sections-${office.id}`);
+                
+                office.sections.forEach(section => {
+                    const sectionItem = document.createElement('li');
+                    sectionItem.innerHTML = `
+                        <button class="section-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-purple-50 rounded flex justify-between items-center" data-section="${section.id}">
+                            <span>${section.name}</span>
+                            <i class="fas fa-chevron-right text-sm text-gray-500"></i>
+                        </button>
+                    `;
+                    
+                    sectionsList.appendChild(sectionItem);
+                    
+                    sectionItem.querySelector('.section-btn').addEventListener('click', () => {
+                        showSectionDetails(section.id);
+                    });
                 });
             });
         }
 
         function showSectionDetails(sectionId) {
-            // Hide current tab content and show details content
             tabContents[currentTab].classList.add('hidden');
             tabContents.details.classList.remove('hidden');
             
-            // Find the section/office in our data structure
             let sectionData = null;
             let sectionName = '';
             
-            // Check floors and sections
             for (const floor of data.structure.floors) {
                 const section = floor.sections.find(s => s.id === sectionId);
                 if (section) {
@@ -1232,36 +1096,36 @@
                 }
             }
             
-            // Check subordinate offices
             if (!sectionData) {
-                const office = data.structure.subOffices.find(o => o.id === sectionId);
-                if (office) {
-                    sectionData = office;
-                    sectionName = office.name;
+                for (const office of data.structure.subOffices) {
+                    const section = office.sections.find(s => s.id === sectionId);
+                    if (section) {
+                        sectionData = section;
+                        sectionName = `${office.name} - ${section.name}`;
+                        break;
+                    }
                 }
             }
             
-            // Check other offices
             if (!sectionData) {
-                const office = data.structure.otherOffices.find(o => o.id === sectionId);
-                if (office) {
-                    sectionData = office;
-                    sectionName = office.name;
+                for (const office of data.structure.otherOffices) {
+                    const section = office.sections.find(s => s.id === sectionId);
+                    if (section) {
+                        sectionData = section;
+                        sectionName = `${office.name} - ${section.name}`;
+                        break;
+                    }
                 }
             }
             
             if (!sectionData) return;
             
-            // Set the section title
             detailsTitle.textContent = sectionName;
-            
-            // Store current section and load contacts
             currentSection = sectionId;
             currentContacts = sectionData.contacts || [];
             currentSearchTerm = '';
             sectionSearch.value = '';
             
-            // Reset sort
             currentSort = { field: 'name', direction: 'asc' };
             document.querySelectorAll('.sort-header').forEach(h => {
                 h.classList.remove('sort-asc', 'sort-desc');
@@ -1273,7 +1137,6 @@
         function renderSectionContacts() {
             if (!currentContacts) return;
             
-            // Filter contacts based on search term
             let filteredContacts = currentContacts.filter(contact => {
                 const searchFields = [
                     contact.designation.toLowerCase(),
@@ -1289,7 +1152,6 @@
                 return searchFields.some(field => field.includes(currentSearchTerm));
             });
             
-            // Sort contacts
             filteredContacts.sort((a, b) => {
                 const fieldA = a[currentSort.field]?.toLowerCase() || '';
                 const fieldB = b[currentSort.field]?.toLowerCase() || '';
@@ -1301,15 +1163,12 @@
                 }
             });
             
-            // Clear current contacts
             contactsList.innerHTML = '';
             
-            // Add filtered and sorted contacts
             filteredContacts.forEach(contact => {
                 const row = document.createElement('tr');
                 row.className = 'hover:bg-gray-50';
                 
-                // Highlight search term in text
                 const highlightText = (text) => {
                     if (!currentSearchTerm) return text;
                     const regex = new RegExp(currentSearchTerm, 'gi');
@@ -1344,7 +1203,6 @@
                 contactsList.appendChild(row);
             });
             
-            // Add event listeners to view buttons
             document.querySelectorAll('.view-details').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const contact = JSON.parse(button.dataset.contact);
@@ -1354,9 +1212,7 @@
         }
 
         function filterAndSortContacts(contacts) {
-            // Filter contacts based on search term and filter
             let filteredContacts = contacts.filter(contact => {
-                // Apply category filter
                 let matchesFilter = true;
                 if (currentFilter !== 'all') {
                     matchesFilter = contact.category.toLowerCase().includes(currentFilter) || 
@@ -1365,7 +1221,6 @@
                 
                 if (!matchesFilter) return false;
                 
-                // Apply search term
                 if (!currentSearchTerm) return true;
                 
                 const searchFields = [
@@ -1382,7 +1237,6 @@
                 return searchFields.some(field => field.includes(currentSearchTerm));
             });
             
-            // Sort contacts
             filteredContacts.sort((a, b) => {
                 const fieldA = a[currentSort.field]?.toLowerCase() || '';
                 const fieldB = b[currentSort.field]?.toLowerCase() || '';
@@ -1402,29 +1256,23 @@
             const totalContacts = filteredContacts.length;
             const totalPages = Math.ceil(totalContacts / contactsPerPage);
             
-            // Update pagination info
             contactTotal.textContent = totalContacts;
             contactStart.textContent = ((currentPage - 1) * contactsPerPage) + 1;
             contactEnd.textContent = Math.min(currentPage * contactsPerPage, totalContacts);
             
-            // Enable/disable pagination buttons
             prevPage.disabled = currentPage <= 1;
             nextPage.disabled = currentPage >= totalPages;
             
-            // Get contacts for current page
             const startIndex = (currentPage - 1) * contactsPerPage;
             const endIndex = Math.min(startIndex + contactsPerPage, totalContacts);
             const pageContacts = filteredContacts.slice(startIndex, endIndex);
             
-            // Clear current contacts
             allContactsList.innerHTML = '';
             
-            // Add contacts for current page
             pageContacts.forEach(contact => {
                 const card = document.createElement('div');
                 card.className = 'bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow duration-200';
                 
-                // Highlight search term in text
                 const highlightText = (text) => {
                     if (!currentSearchTerm) return text;
                     const regex = new RegExp(currentSearchTerm, 'gi');
@@ -1469,7 +1317,6 @@
                 allContactsList.appendChild(card);
             });
             
-            // Add event listeners to view buttons
             document.querySelectorAll('.view-details').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const contact = JSON.parse(button.dataset.contact);
@@ -1479,7 +1326,6 @@
         }
 
         function showContactModal(contact) {
-            // Set modal content
             modalTitle.textContent = `${contact.designation} - ${contact.name}`;
             modalDesignation.textContent = contact.designation;
             modalName.textContent = contact.name;
@@ -1490,14 +1336,12 @@
             modalEmail.textContent = contact.email;
             modalDetails.textContent = contact.details || 'No additional details';
             
-            // Set up action buttons
             callPrimary.onclick = () => { window.location.href = `tel:${contact.contact1}`; };
             callSecondary.onclick = () => { 
                 if (contact.contact2) window.location.href = `tel:${contact.contact2}`; 
             };
             emailContact.onclick = () => { window.location.href = `mailto:${contact.email}`; };
             
-            // Show modal
             contactModal.classList.remove('hidden');
         }
 
