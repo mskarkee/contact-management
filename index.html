@@ -243,11 +243,11 @@
                                     <p id="modalLandline" class="text-gray-700"></p>
                                 </div>
                                 <div>
-                                    <p class="text-sm text-gray-500">Primary Contact</p>
+                                    <p class="text-sm text-gray-500">Official Contact</p>
                                     <p id="modalContact1" class="text-gray-700"></p>
                                 </div>
                                 <div>
-                                    <p class="text-sm text-gray-500">Secondary Contact</p>
+                                    <p class="text-sm text-gray-500">Personal Contact</p>
                                     <p id="modalContact2" class="text-gray-700"></p>
                                 </div>
                                 <div>
@@ -263,13 +263,16 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" id="callLandline" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        <i class="fas fa-phone mr-2"></i> Call Landline
+                    </button>
                     <button type="button" id="callPrimary" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
-                        <i class="fas fa-phone mr-2"></i> Call Primary
+                        <i class="fas fa-mobile-alt mr-2"></i> Call Official
                     </button>
                     <button type="button" id="callSecondary" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
-                        <i class="fas fa-phone-alt mr-2"></i> Call Secondary
+                        <i class="fas fa-mobile mr-2"></i> Call Personal
                     </button>
-                    <button type="button" id="emailContact" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    <button type="button" id="emailContact" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-purple-600 text-base font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:ml-3 sm:w-auto sm:text-sm">
                         <i class="fas fa-envelope mr-2"></i> Email
                     </button>
                 </div>
@@ -836,6 +839,7 @@
         const modalContact2 = document.getElementById('modalContact2');
         const modalEmail = document.getElementById('modalEmail');
         const modalDetails = document.getElementById('modalDetails');
+        const callLandline = document.getElementById('callLandline');
         const callPrimary = document.getElementById('callPrimary');
         const callSecondary = document.getElementById('callSecondary');
         const emailContact = document.getElementById('emailContact');
@@ -1287,7 +1291,7 @@
                             <p class="text-sm text-gray-600 mt-1">Call Sign: ${highlightText(contact.callSign)}</p>
                             <div class="mt-2 flex flex-wrap gap-2">
                                 <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
-                                    <i class="fas fa-phone-alt mr-1 text-gray-500"></i> ${highlightText(contact.contact1)}
+                                    <i class="fas fa-mobile-alt mr-1 text-gray-500"></i> ${highlightText(contact.contact1)}
                                 </span>
                                 ${contact.landline ? `
                                 <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
@@ -1329,6 +1333,9 @@
             modalEmail.textContent = contact.email;
             modalDetails.textContent = contact.details || 'No additional details';
             
+            callLandline.onclick = () => { 
+                if (contact.landline) window.location.href = `tel:${contact.landline}`; 
+            };
             callPrimary.onclick = () => { window.location.href = `tel:${contact.contact1}`; };
             callSecondary.onclick = () => { 
                 if (contact.contact2) window.location.href = `tel:${contact.contact2}`; 
