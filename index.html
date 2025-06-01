@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>District Police Range Kathmandu - Contact Directory</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -32,23 +32,57 @@
         .sort-asc .sort-icon {
             transform: rotate(180deg);
         }
+        
+        /* Mobile-specific styles */
+        @media (max-width: 640px) {
+            .tab-button {
+                padding: 0.5rem;
+                font-size: 0.8rem;
+                min-width: 0;
+                flex-grow: 1;
+            }
+            .tab-button i {
+                margin-right: 0.25rem;
+            }
+            #contactsTable th, #contactsTable td {
+                padding: 0.5rem;
+                font-size: 0.8rem;
+            }
+            .modal-buttons {
+                flex-wrap: wrap;
+            }
+            .modal-buttons button {
+                margin-bottom: 0.5rem;
+                width: 100%;
+            }
+            .contact-card {
+                padding: 1rem;
+            }
+            .contact-card .flex {
+                flex-direction: column;
+            }
+            .contact-card .flex-1 {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
     <!-- Header -->
     <header class="bg-blue-900 text-white shadow-lg">
-        <div class="container mx-auto px-4 py-6">
+        <div class="container mx-auto px-4 py-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-4 md:mb-0">
-                    <img src="https://www.nepalpolice.gov.np/images/logo.png" alt="Nepal Police Logo" class="h-16 mr-4">
+                    <img src="https://www.nepalpolice.gov.np/images/logo.png" alt="Nepal Police Logo" class="h-12 md:h-16 mr-3 md:mr-4">
                     <div>
-                        <h1 class="text-2xl md:text-3xl font-bold">District Police Range Kathmandu</h1>
-                        <p class="text-blue-200">Contact Directory</p>
+                        <h1 class="text-xl md:text-2xl lg:text-3xl font-bold">District Police Range Kathmandu</h1>
+                        <p class="text-blue-200 text-sm md:text-base">Contact Directory</p>
                     </div>
                 </div>
                 <div class="relative w-full md:w-64">
                     <input type="text" id="globalSearch" placeholder="Search contacts..." 
-                           class="w-full px-4 py-2 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                           class="w-full px-4 py-2 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                     <button class="absolute right-3 top-2 text-gray-500">
                         <i class="fas fa-search"></i>
                     </button>
@@ -58,20 +92,20 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
+    <main class="container mx-auto px-2 sm:px-4 py-4 md:py-8">
         <!-- Tabs Navigation -->
-        <div class="flex justify-center border-b border-gray-200 mb-8">
-            <button id="floorsTab" class="tab-button active px-6 py-3 font-medium text-blue-700 border-b-2 border-blue-700 bg-gray-100 outline outline-1 outline-blue-700">
-                <i class="fas fa-building mr-2"></i>Floors
+        <div class="flex overflow-x-auto border-b border-gray-200 mb-4 md:mb-8 no-scrollbar">
+            <button id="floorsTab" class="tab-button active px-3 py-2 md:px-6 md:py-3 font-medium text-blue-700 border-b-2 border-blue-700 bg-gray-100 outline outline-1 outline-blue-700 whitespace-nowrap">
+                <i class="fas fa-building mr-1 md:mr-2"></i>Floors
             </button>
-            <button id="subOfficesTab" class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-blue-700 bg-gray-100 outline outline-1 outline-blue-700">
-                <i class="fas fa-sitemap mr-2"></i>Subordinate Offices
+            <button id="subOfficesTab" class="tab-button px-3 py-2 md:px-6 md:py-3 font-medium text-gray-600 hover:text-blue-700 bg-gray-100 outline outline-1 outline-blue-700 whitespace-nowrap">
+                <i class="fas fa-sitemap mr-1 md:mr-2"></i>Sub Offices
             </button>
-            <button id="otherOfficesTab" class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-blue-700 bg-gray-100 outline outline-1 outline-blue-700">
-                <i class="fas fa-network-wired mr-2"></i>Other Offices
+            <button id="otherOfficesTab" class="tab-button px-3 py-2 md:px-6 md:py-3 font-medium text-gray-600 hover:text-blue-700 bg-gray-100 outline outline-1 outline-blue-700 whitespace-nowrap">
+                <i class="fas fa-network-wired mr-1 md:mr-2"></i>Other Offices
             </button>
-            <button id="allContactsTab" class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-blue-700 bg-gray-100 outline outline-1 outline-blue-700">
-                <i class="fas fa-users mr-2"></i>All Contacts
+            <button id="allContactsTab" class="tab-button px-3 py-2 md:px-6 md:py-3 font-medium text-gray-600 hover:text-blue-700 bg-gray-100 outline outline-1 outline-blue-700 whitespace-nowrap">
+                <i class="fas fa-users mr-1 md:mr-2"></i>All Contacts
             </button>
         </div>
 
@@ -79,21 +113,21 @@
         <div class="tab-content">
             <!-- Floors Content -->
             <div id="floorsContent" class="tab-pane active fade-in">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="floorsContainer">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" id="floorsContainer">
                     <!-- Floors will be loaded here dynamically -->
                 </div>
             </div>
 
             <!-- Subordinate Offices Content -->
             <div id="subOfficesContent" class="tab-pane hidden fade-in">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="subOfficesContainer">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" id="subOfficesContainer">
                     <!-- Subordinate offices will be loaded here dynamically -->
                 </div>
             </div>
 
             <!-- Other Offices Content -->
             <div id="otherOfficesContent" class="tab-pane hidden fade-in">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="otherOfficesContainer">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" id="otherOfficesContainer">
                     <!-- Other offices will be loaded here dynamically -->
                 </div>
             </div>
@@ -104,12 +138,12 @@
                     <div class="bg-gray-800 text-white px-4 py-3">
                         <h3 class="font-bold text-lg">All Contacts</h3>
                     </div>
-                    <div class="p-4">
+                    <div class="p-3 md:p-4">
                         <div class="mb-4">
-                            <div class="flex flex-wrap items-center justify-between mb-4">
-                                <div class="w-full md:w-auto mb-2 md:mb-0">
+                            <div class="flex flex-col sm:flex-row sm:flex-wrap items-center justify-between mb-3 md:mb-4 space-y-2 sm:space-y-0">
+                                <div class="w-full sm:w-auto">
                                     <label for="contactFilter" class="block text-sm font-medium text-gray-700 mb-1">Filter by:</label>
-                                    <select id="contactFilter" class="w-full md:w-48 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                    <select id="contactFilter" class="w-full sm:w-48 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                                         <option value="all">All Contacts</option>
                                         <option value="senior">Senior Officers</option>
                                         <option value="investigation">Investigation Team</option>
@@ -117,9 +151,9 @@
                                         <option value="support">Support Staff</option>
                                     </select>
                                 </div>
-                                <div class="w-full md:w-auto">
+                                <div class="w-full sm:w-auto">
                                     <label for="contactSort" class="block text-sm font-medium text-gray-700 mb-1">Sort by:</label>
-                                    <select id="contactSort" class="w-full md:w-48 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                    <select id="contactSort" class="w-full sm:w-48 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                                         <option value="name-asc">Name (A-Z)</option>
                                         <option value="name-desc">Name (Z-A)</option>
                                         <option value="designation-asc">Designation (A-Z)</option>
@@ -128,7 +162,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="allContactsList" class="space-y-4">
+                        <div id="allContactsList" class="space-y-3 md:space-y-4">
                             <!-- Contacts will be loaded here dynamically -->
                         </div>
                         <div class="mt-4 flex justify-between items-center">
@@ -136,10 +170,10 @@
                                 Showing <span id="contactStart">1</span>-<span id="contactEnd">10</span> of <span id="contactTotal">50</span>
                             </div>
                             <div class="flex space-x-2">
-                                <button id="prevPage" class="px-3 py-1 border border-gray-300 rounded bg-white text-gray-700 disabled:opacity-50" disabled>
+                                <button id="prevPage" class="px-3 py-1 border border-gray-300 rounded bg-white text-gray-700 disabled:opacity-50 text-sm md:text-base">
                                     <i class="fas fa-chevron-left"></i>
                                 </button>
-                                <button id="nextPage" class="px-3 py-1 border border-gray-300 rounded bg-white text-gray-700">
+                                <button id="nextPage" class="px-3 py-1 border border-gray-300 rounded bg-white text-gray-700 text-sm md:text-base">
                                     <i class="fas fa-chevron-right"></i>
                                 </button>
                             </div>
@@ -152,18 +186,18 @@
             <div id="detailsContent" class="hidden fade-in">
                 <div class="bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="flex items-center justify-between bg-blue-800 text-white px-4 py-3">
-                        <h3 id="detailsTitle" class="font-bold text-lg"></h3>
-                        <button id="backButton" class="px-3 py-1 bg-blue-700 hover:bg-blue-600 rounded flex items-center">
-                            <i class="fas fa-arrow-left mr-2"></i> Back
+                        <h3 id="detailsTitle" class="font-bold text-base md:text-lg truncate"></h3>
+                        <button id="backButton" class="px-3 py-1 bg-blue-700 hover:bg-blue-600 rounded flex items-center text-sm md:text-base">
+                            <i class="fas fa-arrow-left mr-1 md:mr-2"></i> Back
                         </button>
                     </div>
-                    <div class="p-4">
-                        <div class="mb-6">
-                            <div class="flex flex-wrap items-center justify-between mb-4">
-                                <h4 class="text-lg font-semibold text-gray-800">Contact List</h4>
-                                <div class="relative w-full md:w-64 mt-2 md:mt-0">
+                    <div class="p-3 md:p-4">
+                        <div class="mb-4 md:mb-6">
+                            <div class="flex flex-col md:flex-row md:flex-wrap items-center justify-between mb-3 md:mb-4 space-y-2 md:space-y-0">
+                                <h4 class="text-base md:text-lg font-semibold text-gray-800">Contact List</h4>
+                                <div class="relative w-full md:w-64">
                                     <input type="text" id="sectionSearch" placeholder="Search in this section..." 
-                                           class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                           class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base">
                                     <button class="absolute right-3 top-2 text-gray-500">
                                         <i class="fas fa-search"></i>
                                     </button>
@@ -173,22 +207,22 @@
                                 <table class="min-w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-50">
                                         <tr>
-                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer sort-header" data-sort="designation">
+                                            <th scope="col" class="px-3 md:px-6 py-2 md:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer sort-header" data-sort="designation">
                                                 <div class="flex items-center">
                                                     Designation
                                                     <i class="fas fa-sort ml-1 sort-icon"></i>
                                                 </div>
                                             </th>
-                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer sort-header" data-sort="name">
+                                            <th scope="col" class="px-3 md:px-6 py-2 md:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer sort-header" data-sort="name">
                                                 <div class="flex items-center">
                                                     Name
                                                     <i class="fas fa-sort ml-1 sort-icon"></i>
                                                 </div>
                                             </th>
-                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <th scope="col" class="px-3 md:px-6 py-2 md:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Contact
                                             </th>
-                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <th scope="col" class="px-3 md:px-6 py-2 md:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Actions
                                             </th>
                                         </tr>
@@ -212,27 +246,27 @@
                 <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
             </div>
             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true"></span>
-            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle w-full sm:max-w-2xl">
                 <div class="bg-blue-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                     <button type="button" id="closeModal" class="mt-0 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-700 text-base font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
                         Close
                     </button>
-                    <h3 class="text-lg leading-6 font-medium text-white" id="modalTitle">Contact Details</h3>
+                    <h3 class="text-lg leading-6 font-medium text-white truncate" id="modalTitle">Contact Details</h3>
                 </div>
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 overflow-y-auto max-h-[60vh]">
                     <div class="sm:flex sm:items-start">
                         <div class="mx-auto flex-shrink-0 flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 sm:mx-0 sm:h-20 sm:w-20">
                             <i class="fas fa-user-tie text-blue-600 text-2xl"></i>
                         </div>
                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                                 <div>
                                     <p class="text-sm text-gray-500">Designation</p>
-                                    <p id="modalDesignation" class="text-lg font-medium text-gray-900"></p>
+                                    <p id="modalDesignation" class="text-base md:text-lg font-medium text-gray-900"></p>
                                 </div>
                                 <div>
                                     <p class="text-sm text-gray-500">Name</p>
-                                    <p id="modalName" class="text-lg font-medium text-gray-900"></p>
+                                    <p id="modalName" class="text-base md:text-lg font-medium text-gray-900"></p>
                                 </div>
                                 <div>
                                     <p class="text-sm text-gray-500">Call Sign</p>
@@ -262,7 +296,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 modal-buttons">
                     <button type="button" id="callLandline" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
                         <i class="fas fa-phone mr-2"></i> Call Landline
                     </button>
@@ -281,13 +315,13 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-gray-800 text-white py-6 md:py-8">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">District Police Range Kathmandu</h3>
-                    <p class="text-gray-400">Serving the community with dedication and professionalism.</p>
-                    <div class="mt-4 flex space-x-4">
+                    <h3 class="text-lg font-semibold mb-3 md:mb-4">District Police Range Kathmandu</h3>
+                    <p class="text-gray-400 text-sm md:text-base">Serving the community with dedication and professionalism.</p>
+                    <div class="mt-3 md:mt-4 flex space-x-4">
                         <a href="#" class="text-gray-400 hover:text-white">
                             <i class="fab fa-facebook-f"></i>
                         </a>
@@ -300,24 +334,24 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <h3 class="text-lg font-semibold mb-3 md:mb-4">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Emergency Numbers</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Crime Reporting</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Traffic Updates</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Recruitment</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Emergency Numbers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Crime Reporting</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Traffic Updates</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm md:text-base">Recruitment</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Contact Information</h3>
-                    <address class="text-gray-400 not-italic">
+                    <h3 class="text-lg font-semibold mb-3 md:mb-4">Contact Information</h3>
+                    <address class="text-gray-400 not-italic text-sm md:text-base">
                         <p><i class="fas fa-map-marker-alt mr-2"></i> Police Headquarters, Kathmandu</p>
                         <p class="mt-2"><i class="fas fa-phone mr-2"></i> Emergency: 100</p>
                         <p class="mt-2"><i class="fas fa-envelope mr-2"></i> info@kathmandupolice.gov.np</p>
                     </address>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+            <div class="border-t border-gray-700 mt-6 md:mt-8 pt-6 text-center text-gray-400 text-sm md:text-base">
                 <p>© 2023 District Police Range Kathmandu. All rights reserved.</p>
             </div>
         </div>
@@ -955,10 +989,10 @@
                 
                 floorCard.innerHTML = `
                     <div class="${floor.color} text-white px-4 py-3">
-                        <h3 class="font-bold text-lg">${floor.name}</h3>
+                        <h3 class="font-bold text-base md:text-lg">${floor.name}</h3>
                     </div>
-                    <div class="p-4">
-                        <div class="mb-4">
+                    <div class="p-3 md:p-4">
+                        <div class="mb-3 md:mb-4">
                             <h4 class="font-semibold text-gray-700 mb-2 flex items-center">
                                 <i class="fas fa-building mr-2 text-blue-600"></i> Sections
                             </h4>
@@ -976,7 +1010,7 @@
                 floor.sections.forEach(section => {
                     const sectionItem = document.createElement('li');
                     sectionItem.innerHTML = `
-                        <button class="section-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-blue-50 rounded flex justify-between items-center" data-section="${section.id}">
+                        <button class="section-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-blue-50 rounded flex justify-between items-center text-sm md:text-base" data-section="${section.id}">
                             <span>${section.name}</span>
                             <i class="fas fa-chevron-right text-sm text-gray-500"></i>
                         </button>
@@ -1000,10 +1034,10 @@
                 
                 officeCard.innerHTML = `
                     <div class="${office.color} text-white px-4 py-3">
-                        <h3 class="font-bold text-lg">${office.name}</h3>
+                        <h3 class="font-bold text-base md:text-lg">${office.name}</h3>
                     </div>
-                    <div class="p-4">
-                        <div class="mb-4">
+                    <div class="p-3 md:p-4">
+                        <div class="mb-3 md:mb-4">
                             <h4 class="font-semibold text-gray-700 mb-2 flex items-center">
                                 <i class="fas fa-building mr-2 text-green-600"></i> Sections
                             </h4>
@@ -1021,7 +1055,7 @@
                 office.sections.forEach(section => {
                     const sectionItem = document.createElement('li');
                     sectionItem.innerHTML = `
-                        <button class="section-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-green-50 rounded flex justify-between items-center" data-section="${section.id}">
+                        <button class="section-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-green-50 rounded flex justify-between items-center text-sm md:text-base" data-section="${section.id}">
                             <span>${section.name}</span>
                             <i class="fas fa-chevron-right text-sm text-gray-500"></i>
                         </button>
@@ -1045,10 +1079,10 @@
                 
                 officeCard.innerHTML = `
                     <div class="${office.color} text-white px-4 py-3">
-                        <h3 class="font-bold text-lg">${office.name}</h3>
+                        <h3 class="font-bold text-base md:text-lg">${office.name}</h3>
                     </div>
-                    <div class="p-4">
-                        <div class="mb-4">
+                    <div class="p-3 md:p-4">
+                        <div class="mb-3 md:mb-4">
                             <h4 class="font-semibold text-gray-700 mb-2 flex items-center">
                                 <i class="fas fa-building mr-2 text-purple-600"></i> Sections
                             </h4>
@@ -1066,7 +1100,7 @@
                 office.sections.forEach(section => {
                     const sectionItem = document.createElement('li');
                     sectionItem.innerHTML = `
-                        <button class="section-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-purple-50 rounded flex justify-between items-center" data-section="${section.id}">
+                        <button class="section-btn w-full text-left px-3 py-2 bg-gray-100 hover:bg-purple-50 rounded flex justify-between items-center text-sm md:text-base" data-section="${section.id}">
                             <span>${section.name}</span>
                             <i class="fas fa-chevron-right text-sm text-gray-500"></i>
                         </button>
@@ -1177,22 +1211,22 @@
                 };
                 
                 row.innerHTML = `
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-3 md:px-6 py-3 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">${highlightText(contact.designation)}</div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-3 md:px-6 py-3 whitespace-nowrap">
                         <div class="text-sm font-medium text-gray-900">${highlightText(contact.name)}</div>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-3 md:px-6 py-3 whitespace-nowrap">
                         <div class="text-sm text-gray-900">${highlightText(contact.contact1)}</div>
                         ${contact.contact2 ? `<div class="text-xs text-gray-500">${highlightText(contact.contact2)}</div>` : ''}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <button class="view-details text-blue-600 hover:text-blue-900 mr-3" data-contact='${JSON.stringify(contact).replace(/'/g, "\\'")}'>
-                            <i class="fas fa-eye mr-1"></i> View
+                    <td class="px-3 md:px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
+                        <button class="view-details text-blue-600 hover:text-blue-900 mr-2 md:mr-3" data-contact='${JSON.stringify(contact).replace(/'/g, "\\'")}'>
+                            <i class="fas fa-eye mr-1"></i> <span class="hidden sm:inline">View</span>
                         </button>
                         <a href="tel:${contact.contact1}" class="text-green-600 hover:text-green-900">
-                            <i class="fas fa-phone mr-1"></i> Call
+                            <i class="fas fa-phone mr-1"></i> <span class="hidden sm:inline">Call</span>
                         </a>
                     </td>
                 `;
@@ -1268,7 +1302,7 @@
             
             pageContacts.forEach(contact => {
                 const card = document.createElement('div');
-                card.className = 'bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow duration-200';
+                card.className = 'bg-white rounded-lg shadow p-4 md:p-6 hover:shadow-md transition-shadow duration-200 contact-card';
                 
                 const highlightText = (text) => {
                     if (!currentSearchTerm) return text;
@@ -1281,14 +1315,14 @@
                         <div class="flex-shrink-0 h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center">
                             <i class="fas fa-user-tie text-blue-600 text-xl"></i>
                         </div>
-                        <div class="ml-4 flex-1">
+                        <div class="ml-3 md:ml-4 flex-1">
                             <div class="flex items-center justify-between">
-                                <h3 class="text-lg font-medium text-gray-900">${highlightText(contact.name)}</h3>
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                <h3 class="text-base md:text-lg font-medium text-gray-900">${highlightText(contact.name)}</h3>
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                                     ${highlightText(contact.designation)}
                                 </span>
                             </div>
-                            <p class="text-sm text-gray-600 mt-1">Call Sign: ${highlightText(contact.callSign)}</p>
+                            <p class="text-xs md:text-sm text-gray-600 mt-1">Call Sign: ${highlightText(contact.callSign)}</p>
                             <div class="mt-2 flex flex-wrap gap-2">
                                 <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
                                     <i class="fas fa-mobile-alt mr-1 text-gray-500"></i> ${highlightText(contact.contact1)}
@@ -1299,11 +1333,11 @@
                                 </span>
                                 ` : ''}
                             </div>
-                            <div class="mt-3 flex space-x-3">
-                                <button class="view-details inline-flex items-center px-3 py-1 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" data-contact='${JSON.stringify(contact).replace(/'/g, "\\'")}'>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <button class="view-details inline-flex items-center px-3 py-1 border border-gray-300 shadow-sm text-xs md:text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" data-contact='${JSON.stringify(contact).replace(/'/g, "\\'")}'>
                                     <i class="fas fa-eye mr-1"></i> Details
                                 </button>
-                                <a href="tel:${contact.contact1}" class="inline-flex items-center px-3 py-1 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                <a href="tel:${contact.contact1}" class="inline-flex items-center px-3 py-1 border border-gray-300 shadow-sm text-xs md:text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                     <i class="fas fa-phone mr-1"></i> Call
                                 </a>
                             </div>
